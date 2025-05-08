@@ -1,0 +1,82 @@
+<mat-sidenav-container class="sidenav-container" autosize>
+
+    <!-- Sidebar -->
+    <mat-sidenav #sidenav mode="side" [opened]="!iisSidenavOpen" class="custom-sidenav">
+      <mat-toolbar class="logo-toolbar custom-logo-bar">
+        <img src="assets/AppLogo.jpg" alt="Logo" class="full-logo" />
+      </mat-toolbar>
+      <mat-nav-list>
+
+        <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen" >
+          <span class="material-symbols-outlined">home</span>
+          @if (isSidenavOpen) {
+            <span  class="fontcolor">Dashboard</span>
+          }
+        </a>
+        <br>
+        <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+          <span class="material-symbols-outlined">group</span>
+          @if (isSidenavOpen) {
+            <span class="fontcolor">Users</span>
+          }
+        </a>
+        <br>
+        <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+          <span class="material-symbols-outlined">account_circle</span>
+          @if (isSidenavOpen) {
+            <span class="fontcolor">Profile</span>
+          }
+        </a>
+        <br>
+        <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+          <span class="material-symbols-outlined">security</span>
+          @if (isSidenavOpen) {
+            <span class="fontcolor">Security</span>
+          }
+        </a>
+        <br>
+        <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+          <span class="material-symbols-outlined">notifications</span>
+          @if (isSidenavOpen) {
+            <span class="fontcolor">Notifications</span>
+          }
+        </a>
+      </mat-nav-list>
+      </mat-sidenav>
+  
+    <!-- Main Content -->
+    <mat-sidenav-content>
+  
+      <!-- Top Header -->
+      <mat-toolbar class="custom-toolbar">
+        <button mat-icon-button (click)="toggleSidenav()">
+            <mat-icon>menu</mat-icon>
+          </button>
+  
+        <span class="welcome-text">Welcome to WEpayLoan!</span>
+  
+        <span class="spacer"></span>
+  
+        <!-- Profile and Logout -->
+        <div class="profile-logout-container">
+          <label class="profile-upload">
+            <img [src]="profileImageUrl || 'assets/default-avatar.png'" alt="" />
+            <input type="file" (change)="onFileSelected($event)" hidden />
+          </label>
+  
+          <button mat-button class="logout-button" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </div>
+      </mat-toolbar>
+  
+      <!-- Actual Page Content (Router Outlet) -->
+      <div class="content" style="padding: 0px;">
+        <router-outlet></router-outlet>
+      </div>
+  
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>
+  

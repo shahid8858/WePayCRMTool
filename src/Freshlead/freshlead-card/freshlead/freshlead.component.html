@@ -1,0 +1,129 @@
+
+<div class="main-layout">
+  <mat-card class="lead-card">
+    <div class="lead-header">
+      <div>
+        <h2><strong>Fresh Leads</strong></h2>
+      </div>
+      <div class="custom-search-box">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" placeholder="🔍 Search leads..." />
+      </div>    
+      
+      <div>
+        <mat-form-field appearance="outline" class="datepick-bar">
+          <mat-label>Filter by created date</mat-label>
+          <mat-date-range-input [rangePicker]="rangePicker" [(ngModel)]="dateRange">
+            <input matStartDate placeholder="Start date">
+            <input matEndDate placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+          <mat-date-range-picker #rangePicker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <div class="export-container">
+      <button mat-raised-button color="primary" (click)="exportToCSV()">
+        <mat-icon>file_download</mat-icon>
+        Export
+      </button>
+    </div>
+  
+    <div style="overflow-x: auto; width: 100%;">
+      <mat-table [dataSource]="dataSource"  style="table-layout: auto; width: 100%;">
+    
+        <!-- Eye Icon Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let lead" class="action-cell">
+            <a [routerLink]="['/CustomerprofileComponent', lead.customerId]"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">
+              <mat-icon>visibility</mat-icon>
+            </a>
+          </mat-cell>
+        </ng-container>
+ 
+      <ng-container matColumnDef="callerName">
+        <mat-header-cell *matHeaderCellDef > Tele Caller </mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.callerName }} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="credMgrName">
+        <mat-header-cell *matHeaderCellDef>Credit Manager</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.credMgrName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="customerName">
+        <mat-header-cell *matHeaderCellDef>Customer Name</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.customerName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let lead">
+          <span class="truncate-text" title="{{ lead.email }}">
+            {{ lead.email }}
+          </span>
+        </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="phoneNo">
+        <mat-header-cell *matHeaderCellDef>Phone No</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.phoneNo }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="loanRequired">
+        <mat-header-cell *matHeaderCellDef>Required Amount</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.loanRequired }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="monthlyIncome">
+        <mat-header-cell *matHeaderCellDef>Monthly Income</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.monthlyIncome }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.city }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.state }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="pinCode">
+        <mat-header-cell *matHeaderCellDef>Pincode</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.pinCode }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="utmSource">
+        <mat-header-cell *matHeaderCellDef>UTM Source </mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.utmSource }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="domain">
+        <mat-header-cell *matHeaderCellDef>Domain</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.domain }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let lead">
+          <span class="status-badge">{{ lead.status }}</span>
+        </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.createdAt }} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="updatedAt">
+        <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
+        <mat-cell *matCellDef="let lead"> {{ lead.updatedAt }} </mat-cell>
+      </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+      </mat-table>
+  
+      <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+    </div>
+  
+    <mat-divider></mat-divider>
+  </mat-card>
+</div>
+

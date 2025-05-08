@@ -1,0 +1,227 @@
+<div class="main-layout">
+  
+    <!-- Left: Vertical Card -->
+    <mat-card class="vertical-card">
+        <!-- Lead ID -->
+        <div class="card-content flex-row">
+          <span class="lead-heading">Copy Lead ID</span>
+          <button mat-icon-button class="no-border-btn" (click)="copyToClipboard(leadId)">
+            <mat-icon class="copy-icon">content_copy</mat-icon>
+          </button>
+        </div>
+      
+        <!-- Customer ID -->
+        <div class="card-content flex-row">
+          <span class="lead-heading">Copy Customer ID</span>
+          <button mat-icon-button class="no-border-btn" (click)="copyToClipboard(customerId)">
+            <mat-icon class="copy-icon">content_copy</mat-icon>
+          </button>
+        </div>
+      
+        <!-- Pre-screen and Profile -->
+        <div>
+          <button class="full-color-btn" (click)="openPreScreenForm()">Open Pre-Screen Form</button>
+      
+          <div class="profile-wrapper">
+            <div class="profile-avatar">{{ getInitials(name) }}</div>
+          </div>
+      
+          <!-- Name with copy icon -->
+          <div class="profile-name flex-row">
+            {{ name }}
+            <mat-icon class="copy-icon" (click)="copyToClipboard(name)">content_copy</mat-icon>
+            <mat-icon class="edit-icon">edit</mat-icon>  <!-- Edit icon to toggle input -->  
+        </div>
+        </div>
+      </mat-card>
+      
+  
+    <!-- Right: Top Card + Accordion -->
+    <div class="right-section">
+      
+      <!-- Top Card Menu -->
+      <mat-card class="topcard-container">
+        <div class="topcard-content">
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">person</span> Profile
+          </div>
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">schedule</span> Timeline
+          </div>
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">check_circle</span> Approval
+          </div>
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">payments</span> Collection
+          </div>
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">account_balance</span> Loan History
+          </div>
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">history</span> Lead History
+          </div>
+          <div class="topcard-item" (click)="selectItem($event)">
+            <span class="material-symbols-outlined">notifications</span> Notifications
+          </div>
+        </div>
+      </mat-card>
+  
+      <!-- Accordion Panels -->
+      <mat-accordion class="card-container" multi="true">
+        <!-- Loan Application Panel -->
+        <mat-expansion-panel  class="custom-rounded-panel">
+          <mat-expansion-panel-header (click)="toggleCustomer()">
+            <mat-panel-title class="example-card">Loan Application Details</mat-panel-title>
+          </mat-expansion-panel-header>
+  
+          <div class="container">
+            <div class="edit-btn-container">
+              <button class="full-color-btn" (click)="openEditDialog()">Edit +</button>
+            </div>
+            @if (showCustomer) {
+              @if (customerData) {
+                <mat-card class="customer-card">
+                  <mat-card-content>
+  
+                 <!-- Row 1 -->
+<div class="row">
+  <div class="col">
+    <label class="setlabel">Loan Purpose</label>
+    <p class="content-item">{{ customerData.purpose }}</p>
+  </div>
+  <div class="col">
+    <label class="setlabel">Monthly Income</label>
+    <p class="content-item">{{ customerData.monthlyIncome }}</p>
+  </div>
+  <div class="col">
+    <label class="setlabel">Loan Required</label>
+    <p class="content-item">{{ customerData.loanRequired }}</p>
+  </div>
+</div>
+
+<!-- Row 2 -->
+<div class="row">
+  <div class="col">
+    <label class="setlabel">City</label>
+    <p class="content-item">{{ customerData.city }}</p>
+  </div>
+  <div class="col">
+    <label class="setlabel">State</label>
+    <p class="content-item">{{ customerData.state }}</p>
+  </div>
+  <div class="col">
+    <label class="setlabel">Pincode</label>
+    <p class="content-item">{{ customerData.pinCode }}</p>
+  </div>
+</div>
+
+<!-- Row 3 -->
+<div class="row">
+  <div class="col">
+    <label class="setlabel">Loan Status</label>
+   <br> <p class="badge blue">{{ customerData.status }}</p>
+  </div>
+  <div class="col">
+    <label class="setlabel">Customer Status</label>
+    <br> <p class="badge yellow">{{ customerData.loanCount }}</p> <!-- Assuming 'Fresh_Customer' -->
+  </div>
+  <div class="col">
+    <label class="setlabel">Assigned Tele Caller</label>
+    <p class="content-item">{{ customerData.callerName }}</p>
+  </div>
+</div>
+
+<!-- Row 4 -->
+<div class="row">
+  <div class="col">
+    <label class="setlabel">Assigned Credit Manager</label>
+    <p class="content-item">{{ customerData.credMgrName }}</p>
+  </div>
+  <div class="col">
+    <label class="setlabel">Created At</label>
+    <p class="content-item">{{ customerData.createdAt }}</p>
+  </div>
+  <div class="col"></div>
+</div>
+
+  
+                  </mat-card-content>
+                </mat-card>
+              } @else {
+                <mat-card class="customer-card">
+                  <mat-card-content>
+                    <p>No customer found with this ID.</p>
+                  </mat-card-content>
+                </mat-card>
+              }
+            }
+          </div>
+        </mat-expansion-panel>
+  <br>
+        <!-- Address Details -->
+        <mat-expansion-panel class="custom-rounded-panel">
+            <mat-expansion-panel-header (click)="toggleaddress()">
+              <mat-panel-title class="example-card">Address Details</mat-panel-title>
+            </mat-expansion-panel-header>
+    
+            <div class="container">
+              <div class="edit-btn-container">
+                <button mat-icon-button color="primary">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+              @if (showaddress) {
+                @if (addressDat) {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+    
+                      
+    
+                    </mat-card-content>
+                  </mat-card>
+                } @else {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+                      <p>No Address added!</p>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              }
+            </div>
+          </mat-expansion-panel>
+          <br>
+        <!-- Reference Details -->
+        <mat-expansion-panel class="custom-rounded-panel">
+            <mat-expansion-panel-header (click)="toggleaddress()">
+              <mat-panel-title class="example-card">Reference Details</mat-panel-title>
+            </mat-expansion-panel-header>
+    
+            <div class="container">
+              <div class="edit-btn-container">
+                <button mat-icon-button color="primary">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+              @if (showaddress) {
+                @if (addressDat) {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+    
+                      
+    
+                    </mat-card-content>
+                  </mat-card>
+                } @else {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+                      <p>No Reference added!</p>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              }
+            </div>
+          </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  

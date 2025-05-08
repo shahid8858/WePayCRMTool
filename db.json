@@ -1,0 +1,24 @@
+{
+  "userss": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "user123"
+    }
+  ],
+  "otp": [
+    {
+      "id": "1d88",
+      "otp": "453500"
+    },
+    {
+      "id": "ba5e",
+      "otp": "371207"
+    }
+  ]
+}

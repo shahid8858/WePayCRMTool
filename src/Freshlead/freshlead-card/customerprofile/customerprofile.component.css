@@ -1,0 +1,241 @@
+.full-color-btn {
+    
+    background-color: #456fae;
+    color: white;
+    border: none;
+    padding: 10px 20px ;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+  }
+  
+  .full-color-btn:hover {
+    background-color: #9cb0cd;
+  }
+  
+  .profile-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    margin-left: 18px;
+  }
+  
+
+  .profile-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin-right: 310px ;
+  }
+  
+  .profile-avatar {
+    background-color: #456fae;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 15px;
+  }
+  
+  .profile-name {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+   
+  }
+.custom-rounded-panel {
+    border: 1px solid #f5d5d5;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* This ensures the header also gets the top rounded corners */
+  .custom-rounded-panel .mat-expansion-panel-header {
+    border-radius: 15px 18px 0 0;
+  }
+  
+  /* This removes the box-shadow that Angular Material adds when expanded (optional) */
+  .custom-rounded-panel.mat-expanded {
+    margin: 10 !important;
+  }
+
+.lead-heading{
+    font-size: 15px;
+}
+.no-border-btn {
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    min-width: auto;
+    width: auto;
+    height: auto;
+  }
+  .flex-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  
+  .copy-icon {
+    font-size: 17px;
+    color: #0d47a1;
+    cursor: pointer;
+   
+    
+  }
+  
+  
+  
+/* Main container with left + right layout */
+.main-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f7f2f2;
+  }
+  
+  /* Left vertical card */
+.vertical-card {
+    width: 310px;
+    min-height: 900px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow-y: auto; /* Enables scrolling for overflow content */
+    max-height: 1000px; /* Set a fixed max height to prevent expansion */
+  }
+  
+  
+  /* Right content section */
+  .right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   
+  }
+  
+  /* Top icon-based card menu */
+  .topcard-container {
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .topcard-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .topcard-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    
+    transition: background-color 0.2s ease;
+  }
+  
+  .topcard-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: #1976d2;
+  }
+  
+  /* Accordion section */
+  .card-container {
+    width: 100%;
+    flex-grow: 0;
+  }
+  
+  .example-card {
+    font-weight: 500;
+    font-size: 18px;
+    
+  }
+  
+  /* Customer info cards */
+  .customer-card {
+    margin-top: 10px;
+    padding: 16px;
+    background-color: #fefefe;
+    border-radius: 10px;
+  }
+  
+  /* Generic row/col structure */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .col {
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .setlabel {
+    font-weight: 600;
+    font-size: 13px;
+  }
+  
+  .content-item {
+    margin: 4px 0 0;
+    font-size: 14px;
+  }
+  
+  /* Badge styling */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 10px;
+    color: #fff; /* Set font color */
+    border: 1px solid currentColor; /* Set border color to match font color */
+  }
+  
+  /* For blue badge */
+  .badge.blue {
+    color: #1976d2; /* Font color */
+    border-color: #1976d2; /* Border color */
+  }
+  
+  /* For yellow badge */
+  .badge.yellow {
+    color: #fbc02d; /* Font color */
+    border-color: #fbc02d; /* Border color */
+  }
+  
+  /* Edit button container */
+  .edit-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+  

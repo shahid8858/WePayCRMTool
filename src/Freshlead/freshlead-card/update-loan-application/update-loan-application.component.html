@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>Update Application Details</h2>
+
+<form [formGroup]="loanupdate" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="dialog-content">
+    <div class="form-grid">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Purpose</mat-label>
+        <mat-select formControlName="purpose">
+          <mat-option value="Medical Emergency">Medical Emergency</mat-option>
+           <mat-option value="Wedding Expenses">Wedding Expenses</mat-option>
+          <mat-option value="Immediate Purchase">Immediate Purchase</mat-option>
+          <mat-option value="Immedaite Commitement">Immedaite Commitement</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Monthly Income</mat-label>
+        <mat-select formControlName="monthlyIncome">
+          <mat-option value="0-35,000">0-35,000</mat-option>
+          <mat-option value="51,000-1,00,000">51,000-1,00,000</mat-option>
+          <mat-option value="30,000 - 50,000">30,000 - 50,000</mat-option>
+          <mat-option value="50,000 - 1,00,000">50,000 - 1,00,000</mat-option>
+          <mat-option value="1,00,000+">Above 1,00,000</mat-option>
+          <mat-option value="36,000-50,000">₹6,000-₹50,000</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Loan Required</mat-label>
+        <mat-select formControlName="loanRequired">
+          <mat-option value="0-35,000">0-35,000</mat-option>
+          <mat-option value="36,000-50,000">36,000-50,000</mat-option> 
+          <mat-option value="1,00,000+"> Above 1,00,000</mat-option>
+          <mat-option value="35,000-50,000">35,000-50,000</mat-option>
+          <mat-option value="50,000-65,000">50,000-65,000</mat-option>
+          <mat-option value="51,000-1,00,000">51,000-1,00,000</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state">
+          <mat-option value="0">New Delhi</mat-option>
+          <mat-option value="1">Uttar Pradesh</mat-option>
+          <mat-option value="2">Karnataka</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city">
+          <mat-option value="Pune">Pune</mat-option>
+          <mat-option value="Lucknow">Lucknow</mat-option>
+          <mat-option value="Bangalore">Bangalore</mat-option>
+          <mat-option value="Gurgaon">Gurgaon</mat-option>
+          <mat-option value="Mumbai">Mumbai</mat-option>
+          <mat-option value="Chennai">Chennai</mat-option>
+          <mat-option value="Faridabad">Faridabad</mat-option>
+          <mat-option value="Delhi">Delhi</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Pincode</mat-label>
+        <input matInput placeholder="Enter Pincode" formControlName="pinCode" />
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit">Update</button>
+  </div>
+
+  
+</form>

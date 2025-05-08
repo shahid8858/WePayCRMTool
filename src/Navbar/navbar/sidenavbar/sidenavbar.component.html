@@ -1,0 +1,89 @@
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #sidenav mode="side" [opened]="!iisSidenavOpen" class="custom-sidenav">
+    <mat-toolbar class="logo-toolbar custom-logo-bar">
+      <img src="assets/AppLogo.jpg" alt="Logo" class="full-logo" />
+    </mat-toolbar>
+
+    <mat-nav-list>
+
+      <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen" >
+        <span class="material-symbols-outlined">home</span>
+        @if (isSidenavOpen) {
+          <span  class="fontcolor">Dashboard</span>
+        }
+      </a>
+      <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+        <span class="material-symbols-outlined">group</span>
+        @if (isSidenavOpen) {
+          <span class="fontcolor">Users</span>
+        }
+      </a>
+
+      <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+        <span class="material-symbols-outlined">account_circle</span>
+        @if (isSidenavOpen) {
+          <span class="fontcolor">Profile</span>
+        }
+      </a>
+
+      <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+        <span class="material-symbols-outlined">security</span>
+        @if (isSidenavOpen) {
+          <span class="fontcolor">Security</span>
+        }
+      </a>
+
+      <a mat-list-item (click)="isSidenavOpen = !isSidenavOpen">
+        <span class="material-symbols-outlined">notifications</span>
+        @if (isSidenavOpen) {
+          <span class="fontcolor">Notifications</span>
+        }
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="custom-toolbar">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="welcome-text">Welcome to WEpayLoan!</span>
+ 
+      <span class="spacer"></span>
+
+      <!-- Optional Search (commented out) -->
+      <!--
+      <div class="custom-search-box">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search..."
+          [(ngModel)]="searchText"
+          (keyup.enter)="onSearch()"
+        />
+      </div>
+      -->
+
+      <!-- Profile and Logout -->
+      <div class="profile-logout-container">
+        <label class="profile-upload">
+          <img [src]="profileImageUrl || 'assets/default-avatar.png'" alt="" />
+          <input type="file" (change)="onFileSelected($event)" hidden />
+        </label>
+
+        <button mat-button class="logout-button" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <div class="content" style="padding: 0px;">
+       <!-- <app-freshlead></app-freshlead>  -->
+       
+       
+    <!-- <app-customerprofile></app-customerprofile> -->
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

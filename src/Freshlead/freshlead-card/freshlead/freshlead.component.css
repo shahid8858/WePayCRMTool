@@ -1,0 +1,171 @@
+.truncate-text {
+  max-width: 150px;         /* adjust width as needed */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* Shift eye icon slightly to the right */
+.action-cell a {
+  margin-left: 18px; /* Adjust this value as needed (e.g., 4px or 12px) */
+  display: inline-block;
+}
+
+.mat-column-actions {
+  width: 48px; /* Slightly wider to accommodate margin */
+  text-align: center;
+  padding: 0 !important;
+}
+
+.status-badge {
+  color: purple;
+  border: 1px solid purple;
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: 12px;
+  display: inline-block;
+ /* Light purple background (optional) */
+}
+.even-row {
+  background-color: #fce4ec; /* Light Pink for even rows */
+}
+
+.odd-row {
+  background-color: white;  /* White for odd rows */
+}
+
+/* Make icon compact */
+.mat-icon {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+
+.lead-card {
+    margin: 10px auto;
+    padding: 1px;
+    max-width: 1450px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  
+    
+  }
+  table {
+    table-layout: auto !important; /* allows flexible sizing */
+    width: 100%;
+  }
+  
+  .lead-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-left: 15px;
+  }
+  .main-layout {
+    display: flex;
+    background-color: #f7f2f2;
+  }
+/* Right side container (for search, profile, logout) */
+.right-side {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Push everything to the right */
+}
+
+.custom-search-box {
+  display: flex;
+
+  background: linear-gradient(135deg, #cbd4d1);
+  border-radius: 10px;
+  padding: 6px 5px;
+  margin-left: 650px;
+  width: 150px;
+  margin-top: -180px;
+}
+
+.custom-search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  padding: 2px;
+  margin-right: 10px;
+  width: 150PX;
+  
+}
+
+.search-icon {
+  color: #666;
+  margin-right: 8px;
+}
+
+
+  
+  .datepick-bar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end; /* Align to right */
+    padding-left: 10px;
+    width: 250px;
+    margin-left: -280px;
+  }
+  
+  
+  .status-tags {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .badge {
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 12px;
+    color: white;
+  }
+  .export-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-top: -10px;
+    margin-right: 10px;
+  }
+  
+  
+  .fresh-lead {
+    background-color: #00BCD4;
+  }
+  
+  .existing-customer {
+    background-color: #9C27B0;
+  }
+  
+  .lead-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    font-size: 12px;
+  }
+  .Header-Cell{
+   
+    
+    font-size: 15px;
+    
+  }
+  .adjust-column {
+    white-space: nowrap;
+    min-width: 200px; /* Adjust as needed */
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: show ... if too long */
+  }
+  
+/* Zebra striping for rows */
+mat-row:nth-child(even) {
+  background-color: #f5f5f5; /* Light grey even rows */
+}
+
+mat-row:nth-child(odd) {
+  background-color: #ffffff; /* White odd rows */
+}

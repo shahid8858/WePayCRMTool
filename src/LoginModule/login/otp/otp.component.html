@@ -1,0 +1,57 @@
+
+    <div class="otp-container">
+       
+        <div class="otp-card">
+            <img src="assets\AppLogo.jpg" alt="Company Logo" class="logo" />
+            <h2 class="greeting">{{ greetingMessage }}!</h2>
+
+      
+          <form [formGroup]="otpForm" (ngSubmit)="otpSent() ? verifyOtp() : sendOtp()">
+            
+            <!-- Mobile Input -->
+            @if (!otpSent()) {
+              <div class="form-group">
+                <label for="mobile">Enter your mobile number or email address to proceed.</label>
+                <input id="mobile" formControlName="mobile" type="text" placeholder="Please enter your mobile number or email address to proceed." />
+              </div>
+            }
+      
+            <!-- OTP Input -->
+            @if (otpSent()) {
+              <p>{{ otpMessage() }}</p>
+              <div class="form-group">
+                <label for="otp">Enter OTP</label>
+                <input id="otp" formControlName="otp" type="text" placeholder="Enter your 6-digit OTP" />
+              </div>
+            }
+      
+            <!-- Submit Button (Dynamic Text) -->
+            <!-- <button type="submit" [disabled]="!otpForm.valid" >
+             
+              @if (!otpSent()) {
+                Send OTP
+              } @else {
+                Verify OTP
+              }
+            </button> -->
+            
+            <button type="button" (click)="goToNextPage()">
+              <a routerLink="/freshlead"  routerLinkActive="active" ariaCurrentWhenActive="page" ></a>
+             
+            Clickme
+            </button>
+
+
+            <!-- Error Message -->
+            @if (errorMessage()) {
+              <p class="error">{{ errorMessage() }}</p>
+            }
+            
+          </form>
+      
+
+        </div>
+      </div>
+      
+
+  
