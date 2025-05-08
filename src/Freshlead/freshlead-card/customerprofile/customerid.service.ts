@@ -20,6 +20,7 @@ export class CustomeridService {
   }
 
   // Update Loan Request
+  
   updateLoanRequest(leadData: any): Observable<any> {
     const url = `${this.apiUrl}/UpdateLoanRequest`;  // Correct endpoint for updating loan request
     return this.http.post<any>(url, leadData);  // Using POST method to update loan
