@@ -74,9 +74,13 @@
             <mat-panel-title class="example-card">Loan Application Details</mat-panel-title>
           </mat-expansion-panel-header>
   
+          
+
           <div class="container">
             <div class="edit-btn-container">
-              <button class="full-color-btn" (click)="openEditDialog()">Edit +</button>
+              <button class="full-color-btn" (click)="openEditDialog()">
+                Edit <mat-icon>add</mat-icon>
+            </button>
             </div>
             @if (showCustomer) {
               @if (customerData) {
@@ -159,34 +163,78 @@
         </mat-expansion-panel>
   <br>
         <!-- Address Details -->
-        <mat-expansion-panel class="custom-rounded-panel">
+       
+          
+         <mat-expansion-panel class="custom-rounded-panel">
             <mat-expansion-panel-header (click)="toggleaddress()">
               <mat-panel-title class="example-card">Address Details</mat-panel-title>
             </mat-expansion-panel-header>
-    
             <div class="container">
-              <div class="edit-btn-container">
-                <button mat-icon-button color="primary">
-                  <mat-icon>edit</mat-icon>
-                </button>
-              </div>
-              @if (showaddress) {
-                @if (addressDat) {
+             
+               
                   <mat-card class="customer-card">
                     <mat-card-content>
-    
-                      
-    
+                      <div class="edit-btn-container">
+                        <button class="full-color-btn" (click)="addAddress()">
+                          Add <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+          
+                   <div class="table-container">
+                          <table mat-table [dataSource]="addressList" class="styled-table">
+                    
+                            <!-- Address Type Column -->
+                            <ng-container matColumnDef="type">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Address Type </th>
+                              <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                            </ng-container>
+                    
+                            <!-- Address Column -->
+                            <ng-container matColumnDef="address">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Address </th>
+                              <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                            </ng-container>
+                    
+                            <!-- City Column -->
+                            <ng-container matColumnDef="city">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> City </th>
+                              <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                            </ng-container>
+                    
+                            <!-- State Column -->
+                            <ng-container matColumnDef="state">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> State </th>
+                              <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                            </ng-container>
+                    
+                            <!-- Pin Code Column -->
+                            <ng-container matColumnDef="pincode">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Pincode </th>
+                              <td mat-cell *matCellDef="let element"> {{element.pincode}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="houseType">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> House Type </th>
+                              <td mat-cell *matCellDef="let element"> {{element.houseType}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="status">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Status </th>
+                              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="customerId">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> customerId </th>
+                              <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+                            </ng-container>
+                    
+                            <!-- Header and Row Declarations -->
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row-hover"></tr>
+                          </table>
+                        </div>
                     </mat-card-content>
                   </mat-card>
-                } @else {
-                  <mat-card class="customer-card">
-                    <mat-card-content>
-                      <p>No Address added!</p>
-                    </mat-card-content>
-                  </mat-card>
-                }
-              }
             </div>
           </mat-expansion-panel>
           <br>

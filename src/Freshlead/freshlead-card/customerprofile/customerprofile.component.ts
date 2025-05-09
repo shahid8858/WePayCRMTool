@@ -10,12 +10,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateLoanApplicationComponent } from '../update-loan-application/update-loan-application.component';
 import { NavbarComponent } from "../../../Navbar/navbar/navbar.component";
-
+import { AddAddressDialogComponentComponent } from '../Dailogs_Modules/add-address-dialog-component/add-address-dialog-component.component';
+import { DialogsServiceService } from '../Services/dialogs-service.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-customerprofile',
   standalone: true, // 👈 this makes the component standalone
-  imports: [CommonModule, MatCardModule, MatExpansionModule, MatIcon, MatDialogModule,], // 👈 import what you use in the template
+  imports: [CommonModule, MatCardModule, MatExpansionModule, MatIcon, MatDialogModule,MatTableModule], // 👈 import what you use in the template
   templateUrl: './customerprofile.component.html',
   styleUrls: ['./customerprofile.component.scss']  // <- styles go here
 
@@ -26,40 +28,17 @@ export class CustomerprofileComponent implements OnInit {
   showaddress=true;
   addressDat:any;
   columns: { label: string, key: string }[] = [];
-  // private leads = [
-  //   {
-  //     id: '1EB5DD91-5108-4AA3-8692-29C2F48B3AC7',
-  //     loanPurpose:'Medical Emergency',
-  //     'Tele Caller': 'Aman',
-  //     'credit manager': 'Karishma',
-  //     'Customer Name': 'Test',
-  //     email: 'shhaid8858883@gmail.com',
-  //     'phone no': '123456789',
-  //     'required amount': '100',
-  //     'monthly income': '500',
-  //     city: 'Noida',
-  //     state: 'UP',
-  //     'loan status':'Fresh Lead',
-     
-  //     pincode: '201305',
-  //     'utm source': 'website',
-  //     domain: 'WePayLoan',
-  //     'customer status': 'Fresh Customer',
-  //     status: 'Fresh Lead',
-  //     'created at': '08-04-2025',
-  //     'updated at': '09-04-2025'
-  //   }
-  // ];
   leads: any[] = [];
   
 
   constructor(
     private customeridService: CustomeridService,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dialogservice: DialogsServiceService
   ) {}
-
   ngOnInit(): void {
+    this.loadAddresses(this.customerId);
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.customeridService.getLeadById(id).subscribe(data => {
@@ -78,12 +57,8 @@ export class CustomerprofileComponent implements OnInit {
             { label: 'Assigned Tele Caller', key: 'callerName' },
             { label: 'Assigned Credit Manager', key: 'credMgrName' },
             { label: 'Created At', key: 'createdAt' }
-            
           ];
-          
       });
-      
-      
     }
   }
   
@@ -119,27 +94,22 @@ openEditDialog() {
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
       console.log('Updated customer from dialog:', result);
-
-      // Example API call to update
-      this.customeridService.updateLoanRequest(result).subscribe(
-        (response) => {
-          console.log('Customer updated successfully!', response);
-          // After successful update, re-fetch fresh customer details
-          const id = this.route.snapshot.paramMap.get('id');
-          if (id) {
-            this.customeridService.getLeadById(id).subscribe(data => {
-              this.customerData = data;
-              console.log('Refetched updated Customer Data:', this.customerData);
-            });
-          }
-        },
-        (error) => {
-          console.error('Failed to update customer', error);
-        }
-      );
+      
+      // ✅ After successful update inside dialog, just re-fetch fresh customer data
+      const id = this.route.snapshot.paramMap.get('id');
+      if (id) {
+        this.customeridService.getLeadById(id).subscribe(data => {
+          this.customerData = data;
+          console.log('Refetched updated Customer Data:', this.customerData);
+        });
+      }
     }
   });
 }
+
+
+
+
 
 // Method to handle editing address details
 editAddressDetails() {
@@ -158,10 +128,67 @@ getInitials(name: string): string {
     .join('')
     .toUpperCase();
 }
+customerId:string=this.route.snapshot.paramMap.get('id')!;
+  displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','customerId'];
+  addressList= new MatTableDataSource<any>();
+  element:any[]=[this.addressList];
+ 
+  loadAddresses(customerId:string): void {
+    const idd = this.route.snapshot.paramMap.get('id');
+    this.dialogservice.getAllAddressesById(customerId).subscribe({
+      next: data => {
+        const formatted = Array.isArray(data) ? data : [data];
+        this.element=formatted;
+        this.addressList.data = formatted;
+        console.log("Data:",data);
+      },
+      error: (err) => {
+        console.error('Failed to load addresses:', err);
+      }
+    });
+  }
+
+
+
+
+
+ 
+
+
+  addAddress() {
+    const dialogRef = this.dialog.open(AddAddressDialogComponentComponent, {
+      width: '500px',
+      data: { customerId: this.customerId } // 👈 Pass the dynamic customerId here
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+  
+        // Attach the customerId to the result if not already attached
+        if (!result.customerId) {
+          result.customerId = this.customerId;
+        }
+  
+        // Save the address to the server
+        this.dialogservice.saveAddress(result).subscribe({
+          next: (response) => {
+            console.log("Response:", response);
+            this.loadAddresses(this.customerId); // Reload addresses after saving
+          },
+          error: (err) => {
+            console.error("Failed to save address:", err);
+          }
+        });
+      }
+    });
+  }
+  
+
 
 
 leadId: string = 'LEAD123456';
-customerId: string = 'CUST654321';
+// customerId: string = 'CUST654321';
 copyToClipboard(value: string) {
   navigator.clipboard.writeText(value).then(() => {
     console.log(`${value} copied to clipboard`);

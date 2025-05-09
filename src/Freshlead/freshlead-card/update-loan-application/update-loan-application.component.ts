@@ -30,7 +30,7 @@ export class UpdateLoanApplicationComponent implements OnInit {
 
   loanupdate: FormGroup;
   isSubmitting: boolean = false;
-  states: State[] = [];  // Declare the states array to hold the fetched states
+  states: { id: number, name: string }[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +50,7 @@ export class UpdateLoanApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.states = this.stateService.getStates();
     if (this.data && this.data.customer) {
       this.loanupdate.patchValue({
         purpose: this.data.customer.purpose || '',
@@ -62,7 +63,7 @@ export class UpdateLoanApplicationComponent implements OnInit {
     }
 
     // Fetch states from the StateService
-    this.states = this.stateService.getStates();
+   
   }
 
   onSubmit() {
