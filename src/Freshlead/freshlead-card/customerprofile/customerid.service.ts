@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CustomeridService {
-  private apiUrl = 'http://localhost:82/api/Leads';  // Correct base URL for Leads API
+  private apiUrl = 'http://localhost:81/api/Leads';  // Correct base URL for Leads API
 
   constructor(private http: HttpClient) {}
 

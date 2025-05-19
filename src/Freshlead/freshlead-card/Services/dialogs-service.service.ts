@@ -8,9 +8,11 @@ export class DialogsServiceService {
 
   constructor(private http:HttpClient) { }
 
-  baseUrl:string="http://localhost:82/api/Leads"
+  // baseUrl:string="http://localhost:82/api/Leads"
+  baseUrl:string="http://localhost:81/api/Leads"
   saveAddress(data :any):Observable<any>{
-    return this.http.post("http://localhost:82/api/Leads/AddCustomerAddresDetails",data);
+    return this.http.post("http://localhost:81/api/Leads/AddCustomerAddresDetails",data);
+    // return this.http.post("http://localhost:82/api/Leads/AddCustomerAddresDetails",data);
 
   }
 
