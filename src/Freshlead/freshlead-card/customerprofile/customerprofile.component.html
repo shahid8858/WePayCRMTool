@@ -30,8 +30,22 @@
           <div class="profile-name flex-row">
             {{ customerName }}
             <mat-icon class="copy-icon" (click)="copyToClipboard(customerName)">content_copy</mat-icon>
-            <mat-icon class="edit-icon">edit</mat-icon>  <!-- Edit icon to toggle input -->  
         </div>
+        </div>
+        <div >
+          <h4 class="fontcolor">Email</h4>
+           <b>{{ customerData.email }}</b>
+            <mat-icon class="copy-icon" (click)="copyToClipboard(customerData.email)">content_copy</mat-icon>
+        </div>
+         <div >
+          <h4 class="fontcolor">Official Email</h4>
+           
+            <mat-icon class="copy-icon" (click)="copyToClipboard(customerData.email)">content_copy</mat-icon>
+        </div>
+        <div >
+          <h4 class="fontcolor">Phone No.</h4>
+            <b>{{ customerData.phoneNo }}</b>
+            <mat-icon class="copy-icon" (click)="copyToClipboard(customerData.phoneNo)">content_copy</mat-icon>
         </div>
       </mat-card>
       
