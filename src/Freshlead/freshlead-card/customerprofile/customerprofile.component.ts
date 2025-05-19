@@ -29,7 +29,7 @@ export class CustomerprofileComponent implements OnInit {
   addressDat:any;
   columns: { label: string, key: string }[] = [];
   leads: any[] = [];
-  
+  customerName: string = '';
 
   constructor(
     private customeridService: CustomeridService,
@@ -39,29 +39,54 @@ export class CustomerprofileComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.loadAddresses(this.customerId);
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.customeridService.getLeadById(id).subscribe(data => {
-        this.customerData = data;
-        console.log('Customer Data:', this.customerData);
-          // After data loaded, prepare the columns
-          this.columns = [
-            { label: 'Loan Purpose', key: 'purpose' },
-            { label: 'Monthly Income', key: 'monthlyIncome' },
-            { label: 'Loan Required', key: 'loanRequired' },
-            { label: 'City', key: 'city' },
-            { label: 'State', key: 'state' },
-            { label: 'Pincode', key: 'pinCode' },
-            { label: 'Loan Status', key: 'status' },
-            { label: 'Customer Status', key: 'loanCount' },
-            { label: 'Assigned Tele Caller', key: 'callerName' },
-            { label: 'Assigned Credit Manager', key: 'credMgrName' },
-            { label: 'Created At', key: 'createdAt' }
-          ];
-      });
-    }
+      const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+    this.loadCustomerData(id);
   }
-  
+    // if (id) {
+    //   this.customeridService.getLeadById(id).subscribe(data => {
+    //     this.customerData = data;
+    //     console.log('Customer Data:', this.customerData);
+    //       // After data loaded, prepare the columns
+    //       this.columns = [
+    //         { label: 'Loan Purpose', key: 'purpose' },
+    //         { label: 'Monthly Income', key: 'monthlyIncome' },
+    //         { label: 'Loan Required', key: 'loanRequired' },
+    //         { label: 'City', key: 'city' },
+    //         { label: 'State', key: 'state' },
+    //         { label: 'Pincode', key: 'pinCode' },
+    //         { label: 'Loan Status', key: 'status' },
+    //         { label: 'Customer Status', key: 'loanCount' },
+    //         { label: 'Assigned Tele Caller', key: 'callerName' },
+    //         { label: 'Assigned Credit Manager', key: 'credMgrName' },
+    //         { label: 'Created At', key: 'createdAt' }
+    //       ];
+    //   });
+    // }
+  }
+
+loadCustomerData(id: string): void {
+  this.customeridService.getLeadById(id).subscribe(data => {
+    this.customerData = data;
+    console.log('Customer Data:', this.customerData);
+this.customerName = data.customerName || ''; 
+    this.columns = [
+      { label: 'Loan Purpose', key: 'purpose' },
+      { label: 'Monthly Income', key: 'monthlyIncome' },
+      { label: 'Loan Required', key: 'loanRequired' },
+      { label: 'City', key: 'city' },
+      { label: 'State', key: 'state' },
+      { label: 'Pincode', key: 'pinCode' },
+      { label: 'Loan Status', key: 'status' },
+      { label: 'Customer Status', key: 'loanCount' },
+      { label: 'Assigned Tele Caller', key: 'callerName' },
+      { label: 'Assigned Credit Manager', key: 'credMgrName' },
+      { label: 'Created At', key: 'createdAt' }
+    ];
+  });
+}
+
+
   toggleCustomer() {
     this.showCustomer = !this.showCustomer;
   }
@@ -118,7 +143,7 @@ editAddressDetails() {
 }
 openPreScreenForm()
 {}
-name = '';
+//name = 'g';
 
 getInitials(name: string): string {
   if (!name) return '';
@@ -185,10 +210,10 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
   }
   
 
+leadid:string="xyz";
 
-
-leadId: string = 'LEAD123456';
-// customerId: string = 'CUST654321';
+customer_Id: string = this.route.snapshot.paramMap.get('id')!;
+ //customerId: string = 'CUST654321';
 copyToClipboard(value: string) {
   navigator.clipboard.writeText(value).then(() => {
     console.log(`${value} copied to clipboard`);

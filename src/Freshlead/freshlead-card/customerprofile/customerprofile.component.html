@@ -5,7 +5,7 @@
         <!-- Lead ID -->
         <div class="card-content flex-row">
           <span class="lead-heading">Copy Lead ID</span>
-          <button mat-icon-button class="no-border-btn" (click)="copyToClipboard(leadId)">
+          <button mat-icon-button class="no-border-btn" (click)="copyToClipboard(leadid)">
             <mat-icon class="copy-icon">content_copy</mat-icon>
           </button>
         </div>
@@ -13,7 +13,7 @@
         <!-- Customer ID -->
         <div class="card-content flex-row">
           <span class="lead-heading">Copy Customer ID</span>
-          <button mat-icon-button class="no-border-btn" (click)="copyToClipboard(customerId)">
+          <button mat-icon-button class="no-border-btn" (click)="copyToClipboard(customer_Id)">
             <mat-icon class="copy-icon">content_copy</mat-icon>
           </button>
         </div>
@@ -23,13 +23,13 @@
           <button class="full-color-btn" (click)="openPreScreenForm()">Open Pre-Screen Form</button>
       
           <div class="profile-wrapper">
-            <div class="profile-avatar">{{ getInitials(name) }}</div>
+            <div class="profile-avatar">{{ getInitials(customerName) }}</div>
           </div>
       
           <!-- Name with copy icon -->
           <div class="profile-name flex-row">
-            {{ name }}
-            <mat-icon class="copy-icon" (click)="copyToClipboard(name)">content_copy</mat-icon>
+            {{ customerName }}
+            <mat-icon class="copy-icon" (click)="copyToClipboard(customerName)">content_copy</mat-icon>
             <mat-icon class="edit-icon">edit</mat-icon>  <!-- Edit icon to toggle input -->  
         </div>
         </div>
