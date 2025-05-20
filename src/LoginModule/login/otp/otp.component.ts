@@ -62,7 +62,7 @@ showSidenav=false;
     //   }
       
     goToNextPage() {
-      this.router.navigate(['/freshlead']); // Replace with your route
+      this.router.navigate(['/app/freshlead']); // Replace with your route
     }
 
       verifyOtp(): void {

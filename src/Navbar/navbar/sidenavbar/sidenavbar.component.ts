@@ -7,7 +7,7 @@ import { MatSidenavContent } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { Routes } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -19,13 +19,13 @@ import { NgIf } from '@angular/common';  // ✅ Import NgIf
 import { CommonModule } from '@angular/common';
 import { FreshleadComponent } from '../../../Freshlead/freshlead-card/freshlead/freshlead.component';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule ,RouterOutlet } from '@angular/router';
+import { RouterModule ,RouterOutlet,RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidenavbar',
   standalone: true,
   imports: [MatSidenav,FormsModule,MatFormFieldModule,CommonModule,MatInputModule,MatToolbar,MatSidenavContainer,MatNavList,MatSidenavContent,MatIconModule,MatSidenavModule,MatToolbarModule,MatListModule
-    ,MatButtonModule,MatExpansionModule,MatSelectModule,RouterModule
+    ,MatButtonModule,MatExpansionModule,MatSelectModule,RouterModule,
   ],
   templateUrl: './sidenavbar.component.html',
   styleUrl: './sidenavbar.component.css'

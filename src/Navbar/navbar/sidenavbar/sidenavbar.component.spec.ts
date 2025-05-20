@@ -10,7 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms'; // ✅ Import this
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { FreshleadComponent } from '../../../Freshlead/freshlead-card/freshlead/freshlead.component';
-
+import { RouterModule ,RouterOutlet,RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { CustomerprofileComponent } from "../../../Freshlead/freshlead-card/customerprofile/customerprofile.component"; // ✅ Import this
 @Component({
@@ -22,11 +22,11 @@ import { CustomerprofileComponent } from "../../../Freshlead/freshlead-card/cust
     MatIconModule,
     MatListModule,
     MatButtonModule,
+    RouterModule,
     MatFormFieldModule,
     MatInputModule,
     MatExpansionModule,
     FormsModule,
-    
     
 ],
   templateUrl: './sidenavbar.component.html',

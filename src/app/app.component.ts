@@ -18,7 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,MatNavList,HttpClientModule,MatIcon,MatSidenavContainer,MatSidenav,MatSidenavModule,MatIconModule,MatToolbarModule],
+  imports: [RouterOutlet, CommonModule, MatNavList, HttpClientModule, MatIcon, MatSidenavContainer, MatSidenav, MatSidenavModule, MatIconModule, MatToolbarModule,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

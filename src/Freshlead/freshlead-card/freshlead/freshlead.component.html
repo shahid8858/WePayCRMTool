@@ -37,11 +37,12 @@
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let lead" class="action-cell">
-            <a [routerLink]="['/CustomerprofileComponent', lead.customerId]"
-               routerLinkActive="active"
-               ariaCurrentWhenActive="page">
-              <mat-icon>visibility</mat-icon>
-            </a>
+            <a [routerLink]="['/app/customerprofile', lead.customerId]"
+   routerLinkActive="active"
+   ariaCurrentWhenActive="page">
+  <mat-icon>visibility</mat-icon>
+</a>
+
           </mat-cell>
         </ng-container>
  

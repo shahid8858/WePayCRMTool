@@ -6,10 +6,16 @@ import { OtpComponent } from '../LoginModule/login/otp/otp.component';
 import { CustomerprofileComponent } from '../Freshlead/freshlead-card/customerprofile/customerprofile.component';
 
 export const routes: Routes = [
+  { path: '', component: OtpComponent },  // login page
 
-  { path: '', component: OtpComponent },
-{path: 'freshlead', component: FreshleadComponent},
-  // { path: 'sidenavbar', component: SidenavbarComponent },
-  {path:'CustomerprofileComponent/:id',component:CustomerprofileComponent}
+  {
+    path: 'app',
+    component: SidenavbarComponent,
+    children: [
+      { path: 'freshlead', component: FreshleadComponent },
+      { path: 'customerprofile/:id', component: CustomerprofileComponent }
+    ]
+  },
 
+  // { path: '**', redirectTo: '' }
 ];
