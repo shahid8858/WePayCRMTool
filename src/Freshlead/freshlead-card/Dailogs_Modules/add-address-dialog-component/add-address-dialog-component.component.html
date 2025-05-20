@@ -47,8 +47,9 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Status</mat-label>
       <mat-select formControlName="status">
-        <mat-option value="Settel">Settel</mat-option>
-        <mat-option value="Disbursed">Disbursed</mat-option>
+       @for (status of leadstatus; track status.id) {
+        <mat-option [value]="status.id">{{ status.label }}</mat-option>
+       }
       </mat-select>
     </mat-form-field>
    </div>
