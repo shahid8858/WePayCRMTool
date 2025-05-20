@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { StateService } from './StateService/services/state.service';  // Import the StateService
+import { StateService } from './StateService/state.service';  // Import the StateService
 import { State } from '../../../app/models/lead.model';
 
 @Component({
@@ -80,7 +80,7 @@ export class UpdateLoanApplicationComponent implements OnInit {
       const customerId = this.data.customer.customerId;  // getting the correct CustomerID
 
       // ✅ Correct API URL
-      const apiUrl = `http://localhost:82/api/Leads/UpdateLoanRequest?CustomerID=${encodeURIComponent(customerId)}`;
+      const apiUrl = `http://localhost:81/api/Leads/UpdateLoanRequest?CustomerID=${encodeURIComponent(customerId)}`;
 
       this.isSubmitting = true;
 
