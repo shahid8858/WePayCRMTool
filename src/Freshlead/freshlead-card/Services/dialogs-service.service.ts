@@ -19,4 +19,12 @@ export class DialogsServiceService {
   getAllAddressesById(userId: string): Observable<any[]> {
     return this.http.get<any>(`${this.baseUrl}/GetCustomerAddresById/${userId}`).pipe(map(response=>response.result));
   }
+
+  saverefrence(data:any):Observable<any>{
+    return this.http.post("http://localhost:81/api/Leads/AddCustomerRefrenceDetails",data)
+  }
+
+   getAllrefrenceById(userId: string): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/GetrefrenceById/${userId}`).pipe(map(response=>response.result));
+  }
 }

@@ -8,6 +8,11 @@ export interface callingStatus{
     label:string;
 }
 
+export interface relations{
+    id:string;
+    relationname:string;
+}
+
 export const STATES: states[] = [
     { id: '1', name: 'Andhra Pradesh' },
     { id: '2', name: 'Arunachal Pradesh' },
@@ -69,4 +74,16 @@ export const CALLING_STATUS_OPTIONS:callingStatus[] = [
     { id: '20', label: 'Disbursed' },
     { id: '21', label: 'Bank Update' },
     { id: '22', label: 'Other' }
+  ];
+
+  export const RelationType:relations[]=[
+
+      { id: '1', relationname: 'Father' },
+      { id: '2', relationname: 'Mother' },
+      { id: '3', relationname: 'Brother' },
+      { id: '4', relationname: 'Sister' },
+      { id: '5', relationname: 'Spouse' },
+      { id: '6', relationname: 'Friend' },
+      { id: '7', relationname: 'Office Colleague' },
+      { id: '8', relationname: 'other' },
   ];

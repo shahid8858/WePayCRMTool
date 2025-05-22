@@ -268,7 +268,9 @@
               <mat-panel-title class="example-card">Employment Details</mat-panel-title>
             </mat-expansion-panel-header>
     
-            <div class="container">
+            <!-- <div class="container">
+
+
               <div class="edit-btn-container">
                  <button class="full-color-btn" (click)="addEmploymentDetails()">
                           Add <mat-icon>add</mat-icon>
@@ -361,8 +363,74 @@
                     </mat-card-content>
                   </mat-card>
                 }
-              } -->
+              }
+            </div> -->
+         
+
+
+ <div class="container">
+             
+               
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+                      <div class="edit-btn-container">
+                        <button class="full-color-btn" (click)="addRefrence()">
+                          Add <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+          
+                   <div class="table-container">
+                          <table mat-table [dataSource]="refrenceList" class="styled-table">
+                    
+                           
+                            <ng-container matColumnDef="fullname">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Full Name </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.fullname}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="relation">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Relation </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.relation}} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="phonenumber">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Phone Number </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.phonenumber}} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="address">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Address </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.address}} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="city">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> City </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.city}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="state">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> State </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.state}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="pincode">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> Pincode </th>
+                              <td mat-cell *matCellDef="let refelement"> {{refelement.pincode}} </td>
+                            </ng-container>
+                    
+                            <!-- Header and Row Declarations -->
+                            <tr mat-header-row *matHeaderRowDef="refdisplayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: refdisplayedColumns;" class="custom-row-hover"></tr>
+                          </table>
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
             </div>
+
+
           </mat-expansion-panel>
       </mat-accordion>
     </div>
