@@ -1,0 +1,17 @@
+.dialog-content {
+  padding: 0 1rem;
+
+  .form-grid {
+    padding-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+  }
+
+  .full-width {
+    grid-column: span 2;
+  }
+}
+
+ 
+

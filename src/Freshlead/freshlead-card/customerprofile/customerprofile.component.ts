@@ -13,6 +13,7 @@ import { NavbarComponent } from "../../../Navbar/navbar/navbar.component";
 import { AddAddressDialogComponentComponent } from '../Dailogs_Modules/add-address-dialog-component/add-address-dialog-component.component';
 import { DialogsServiceService } from '../Services/dialogs-service.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { AddReferenceDetailsComponent } from '../Dailogs_Modules/add-reference-details/add-reference-details.component';
 
 @Component({
   selector: 'app-customerprofile',
@@ -39,30 +40,12 @@ export class CustomerprofileComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.loadAddresses(this.customerId);
+    this.loadrefrences(this.customerId);
       const id = this.route.snapshot.paramMap.get('id');
   if (id) {
     this.loadCustomerData(id);
   }
-    // if (id) {
-    //   this.customeridService.getLeadById(id).subscribe(data => {
-    //     this.customerData = data;
-    //     console.log('Customer Data:', this.customerData);
-    //       // After data loaded, prepare the columns
-    //       this.columns = [
-    //         { label: 'Loan Purpose', key: 'purpose' },
-    //         { label: 'Monthly Income', key: 'monthlyIncome' },
-    //         { label: 'Loan Required', key: 'loanRequired' },
-    //         { label: 'City', key: 'city' },
-    //         { label: 'State', key: 'state' },
-    //         { label: 'Pincode', key: 'pinCode' },
-    //         { label: 'Loan Status', key: 'status' },
-    //         { label: 'Customer Status', key: 'loanCount' },
-    //         { label: 'Assigned Tele Caller', key: 'callerName' },
-    //         { label: 'Assigned Credit Manager', key: 'credMgrName' },
-    //         { label: 'Created At', key: 'createdAt' }
-    //       ];
-    //   });
-    // }
+  
   }
 
 loadCustomerData(id: string): void {
@@ -98,7 +81,7 @@ this.customerName = data.customerName || '';
     console.log("Edit clicked");
     // Your logic here
   }
-  // Method to handle editing loan application
+
 editLoanApplication() {
   this.showCustomer = !this.showCustomer;
   console.log('Edit Loan Application clicked');
@@ -132,18 +115,13 @@ openEditDialog() {
   });
 }
 
-
-
-
-
-// Method to handle editing address details
 editAddressDetails() {
   console.log('Edit Address Details clicked');
   // Add logic for editing address details
 }
 openPreScreenForm()
 {}
-//name = 'g';
+
 
 getInitials(name: string): string {
   if (!name) return '';
@@ -153,11 +131,21 @@ getInitials(name: string): string {
     .join('')
     .toUpperCase();
 }
+
+
+
 customerId:string=this.route.snapshot.paramMap.get('id')!;
   displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','customerId'];
   addressList= new MatTableDataSource<any>();
   element:any[]=[this.addressList];
  
+
+  refdisplayedColumns: string[] = ['fullname','relation','phonenumber','address','city','state','pincode'];
+  refrenceList= new MatTableDataSource<any>();
+  refelement:any[]=[this.refrenceList];
+
+
+
   loadAddresses(customerId:string): void {
     const idd = this.route.snapshot.paramMap.get('id');
     this.dialogservice.getAllAddressesById(customerId).subscribe({
@@ -174,10 +162,20 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
   }
 
 
-
-
-
- 
+    loadrefrences(customerId:string): void {
+    const idd = this.route.snapshot.paramMap.get('id');
+    this.dialogservice.getAllrefrenceById(customerId).subscribe({
+      next: data => {
+        const formatted = Array.isArray(data) ? data : [data];
+        this.refelement=formatted;
+        this.refrenceList.data = formatted;
+        console.log("Data:",data);
+      },
+      error: (err) => {
+        console.error('Failed to load addresses:', err);
+      }
+    });
+  }
 
 
   addAddress() {
@@ -202,6 +200,39 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
             this.loadAddresses(this.customerId); // Reload addresses after saving
           },
           error: (err) => {
+            console.error("Failed to save address:", err);
+          }
+        });
+      }
+    });
+  }
+
+  addRefrence()
+  {
+    const dialogRef = this.dialog.open(AddReferenceDetailsComponent, {
+      width: '50vw', 
+  maxWidth: 'none',
+      data: { customerId: this.customerId } // 👈 Pass the dynamic customerId here
+    });
+      
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+  
+        // Attach the customerId to the result if not already attached
+        if (!result.customerId) {
+          result.customerId = this.customerId;
+        }
+         alert(result.fullname);
+        // Save the refrence to the server
+        this.dialogservice.saverefrence(result).subscribe({
+          next: (response) => {
+            alert(response);
+            console.log("Response:", response);
+            this.loadAddresses(this.customerId); // Reload addresses after saving
+          },
+          error: (err) => {
+            alert("err : "+err);
             console.error("Failed to save address:", err);
           }
         });

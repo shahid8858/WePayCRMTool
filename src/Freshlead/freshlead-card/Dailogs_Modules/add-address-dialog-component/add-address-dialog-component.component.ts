@@ -25,10 +25,13 @@ export class AddAddressDialogComponentComponent {
     private route: ActivatedRoute,
     private dialogref: MatDialogRef<AddAddressDialogComponentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any // Inject dialog data
-  ) {
+  ) 
+  {
     this.route.paramMap.subscribe(params => {
       this.customerId = params.get('id') || '';
     });
+
+
     this.addressForm = this.fb.group({
       type: [''],
       address: [''],
