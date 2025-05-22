@@ -93,6 +93,10 @@ this.customerName = data.customerName || '';
   toggleaddress() {
    
   }
+  toggleEmploymentDetails() {
+   
+  }
+  addEmploymentDetails(){}
   onEditClick(event: Event) {
     event.stopPropagation(); // Prevent toggling the panel
     console.log("Edit clicked");
@@ -154,9 +158,14 @@ getInitials(name: string): string {
     .toUpperCase();
 }
 customerId:string=this.route.snapshot.paramMap.get('id')!;
-  displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','customerId'];
+  //displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','customerId'];
+  displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','delete'];
+
   addressList= new MatTableDataSource<any>();
   element:any[]=[this.addressList];
+
+  addEmploymentList= new MatTableDataSource<any>();
+  element1:any[]=[this.addEmploymentList];
  
   loadAddresses(customerId:string): void {
     const idd = this.route.snapshot.paramMap.get('id');
@@ -174,7 +183,9 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
   }
 
 
-
+deleteAddress(){
+   console.log("deleteAddress clicked:");
+}
 
 
  
