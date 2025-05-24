@@ -14,7 +14,10 @@ import { AddAddressDialogComponentComponent } from '../Dailogs_Modules/add-addre
 import { DialogsServiceService } from '../Services/dialogs-service.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AddReferenceDetailsComponent } from '../Dailogs_Modules/add-reference-details/add-reference-details.component';
-
+import { addemploymentdetailsComponent } from '../Dailogs_Modules/addemploymentdetail/addemploymentdetail.component';
+import { AddassestdetailComponent } from '../Dailogs_Modules/addassestdetail/addassestdetail.component';
+import { AddredflagsdetailComponent } from '../Dailogs_Modules/addredflagsdetail/addredflagsdetail.component';
+import { AdddocumentdetailComponent } from '../Dailogs_Modules/adddocumentdetail/adddocumentdetail.component';
 @Component({
   selector: 'app-customerprofile',
   standalone: true, // 👈 this makes the component standalone
@@ -41,6 +44,8 @@ export class CustomerprofileComponent implements OnInit {
   ngOnInit(): void {
     this.loadAddresses(this.customerId);
     this.loadrefrences(this.customerId);
+    this.loademploymnetdetails(this.customerId)
+     this.loadassestdetails(this.customerId);
       const id = this.route.snapshot.paramMap.get('id');
   if (id) {
     this.loadCustomerData(id);
@@ -79,7 +84,11 @@ this.customerName = data.customerName || '';
   toggleEmploymentDetails() {
    
   }
-  addEmploymentDetails(){}
+
+  toggleRedFlagsDetails(){}
+
+  
+  
   onEditClick(event: Event) {
     event.stopPropagation(); // Prevent toggling the panel
     console.log("Edit clicked");
@@ -126,6 +135,10 @@ editAddressDetails() {
 openPreScreenForm()
 {}
 
+toggleAssestDetails(){}
+
+
+
 
 getInitials(name: string): string {
   if (!name) return '';
@@ -140,15 +153,39 @@ getInitials(name: string): string {
 
 customerId:string=this.route.snapshot.paramMap.get('id')!;
   //displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','customerId'];
-  displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','delete'];
+  displayedColumns: string[] = ['type', 'address', 'city', 'state', 'pincode','houseType','status','id'];
 
   addressList= new MatTableDataSource<any>();
   element:any[]=[this.addressList];
  
 
-  refdisplayedColumns: string[] = ['fullname','relation','phonenumber','address','city','state','pincode'];
+  refdisplayedColumns: string[] = ['fullname','relation','phonenumber','address','city','state','pincode','id'];
   refrenceList= new MatTableDataSource<any>();
   refelement:any[]=[this.refrenceList];
+
+
+   emplomentdetailsColumns: string[] = ['companyname','currentcompanyexp','totalExp','address','city','state','pincode','status','verifiedby','id'];
+  emplomentdetailsList= new MatTableDataSource<any>();
+  emplomentdetailselement:any[]=[this.emplomentdetailsList];
+
+
+  assestDetailsColumns:string[]=['asset_name','asset_value']
+  assestDetailsList=new MatTableDataSource<any>();
+  assestDetailsListelement:any[]=[this.assestDetailsList];
+
+
+redFlagsDetailsColumns:string[]=['reason','risk_level']
+ redFlagsDetailsList=new MatTableDataSource<any>();
+ redFlagsDetailsListelement:any[]=[this.redFlagsDetailsList];
+
+
+ DocumentDetailsColumns:string[]=['type','password','status']
+ DocumentDetailsList=new MatTableDataSource<any>();
+ DocumentDetailsListelement:any[]=[this.DocumentDetailsList];
+
+
+
+
 
 
 
@@ -182,6 +219,98 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
       }
     });
   }
+
+  loademploymnetdetails(customerId:string): void {
+    const idd = this.route.snapshot.paramMap.get('id');
+    this.dialogservice.getAllemploymentId(customerId).subscribe({
+      next: data => {
+        const formatted = Array.isArray(data) ? data : [data];
+        this.emplomentdetailselement=formatted;
+       
+        this.emplomentdetailsList.data = data;
+        console.log("Data:",data);
+      },
+      error: (err) => {
+        console.error('Failed to load addresses:', err);
+      }
+    });
+  }
+  loadassestdetails(customerId:string): void {
+    const idd = this.route.snapshot.paramMap.get('id');
+    this.dialogservice.getAassestdetailsbyId(customerId).subscribe({
+      next: data => {
+        const formatted = Array.isArray(data) ? data : [data];
+        this.assestDetailsListelement=formatted;
+       
+        this.assestDetailsList.data = data;
+        console.log("Data:",data);
+      },
+      error: (err) => {
+        console.error('Failed to load addresses:', err);
+      }
+    });
+  }
+
+  
+
+    loadRedFlagsDetails(customerId:string): void {
+    const idd = this.route.snapshot.paramMap.get('id');
+    this.dialogservice.GetCustomerRedflagDetailsByID(customerId).subscribe({
+      next: data => {
+        const formatted = Array.isArray(data) ? data : [data];
+        this.redFlagsDetailsListelement=formatted;
+       
+        this.redFlagsDetailsList.data = data;
+        console.log("Data:",data);
+      },
+      error: (err) => {
+        console.error('Failed to load addresses:', err);
+      }
+    });
+  }
+  deleteAddress(addressId: number): void {
+  this.dialogservice.removeContact(addressId).subscribe({
+    next: (res) => {
+      console.log('Contact removed successfully:', res);
+      // Optionally refresh address list
+      this.loadAddresses(this.customerId); // implement this to reload data
+    },
+    error: (err) => {
+      console.error('Failed to remove contact:', err);
+    }
+  });
+}
+
+  deleteRefrence(addressId: number): void {
+  this.dialogservice.removeRefrence(addressId).subscribe({
+    next: (res) => {
+      console.log('Contact removed successfully:', res);
+      // Optionally refresh address list
+      this.loadrefrences(this.customerId); // implement this to reload data
+    },
+    error: (err) => {
+      console.error('Failed to remove contact:', err);
+    }
+  });
+}
+
+ deleteemployment(addressId: number): void {
+  this.dialogservice.removeemploymentdetails(addressId).subscribe({
+    next: (res) => {
+      console.log('Contact removed successfully:', res);
+      // Optionally refresh address list
+      this.loademploymnetdetails(this.customerId); // implement this to reload data
+    },
+    error: (err) => {
+      console.error('Failed to remove contact:', err);
+    }
+  });
+}
+
+
+
+
+
 
 
   addAddress() {
@@ -229,9 +358,141 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
         if (!result.customerId) {
           result.customerId = this.customerId;
         }
-         alert(result.fullname);
+        
         // Save the refrence to the server
         this.dialogservice.saverefrence(result).subscribe({
+          next: (response) => {
+            
+            console.log("Response:", response);
+            this.loadrefrences(this.customerId); // Reload addresses after saving
+          },
+          error: (err) => {
+           
+            console.error("Failed to save address:", err);
+          }
+        });
+      }
+    });
+  }
+
+  addEmploymentDetails(){
+     const dialogRef = this.dialog.open(addemploymentdetailsComponent, {
+      width: '50vw', 
+  maxWidth: 'none',
+      data: { customerId: this.customerId } // 👈 Pass the dynamic customerId here
+    });
+      
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+  
+        // Attach the customerId to the result if not already attached
+        if (!result.customerId) {
+          result.customerId = this.customerId;
+        }
+       
+        // Save the refrence to the server
+        this.dialogservice.saveemploydetails(result).subscribe({
+          next: (response) => {
+         
+            console.log("Response:", response);
+            this.loademploymnetdetails(this.customerId); // Reload addresses after saving
+          },
+          error: (err) => {
+            alert("err : "+err);
+            console.error("Failed to save address:", err);
+          }
+        });
+      }
+    });
+  }
+
+  addAssestDetails(){ const dialogRef = this.dialog.open(AddassestdetailComponent, {
+      width: '50vw', 
+  maxWidth: 'none',
+      data: { customerId: this.customerId } // 👈 Pass the dynamic customerId here
+    });
+      
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+  
+        // Attach the customerId to the result if not already attached
+        if (!result.customerId) {
+          result.customerId = this.customerId;
+        }
+        
+        // Save the refrence to the server
+        this.dialogservice.saveassestdetails(result).subscribe({
+          next: (response) => {
+           
+            console.log("Response:", response);
+            this.loadassestdetails(this.customerId); // Reload addresses after saving
+          },
+          error: (err) => {
+           
+            console.error("Failed to save address:", err);
+          }
+        });
+      }
+    });}
+
+
+
+    addKYCDetails(){}
+
+
+    
+
+
+    addRedFlagsDetails(){ const dialogRef = this.dialog.open(AddredflagsdetailComponent, {
+      width: '50vw', 
+  maxWidth: 'none',
+      data: { customerId: this.customerId } // 👈 Pass the dynamic customerId here
+    });
+      
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+  
+        // Attach the customerId to the result if not already attached
+        if (!result.customerId) {
+          result.customerId = this.customerId;
+        }
+         alert(result.fullname);
+        // Save the refrence to the server
+        this.dialogservice.saveredflagdetails(result).subscribe({
+          next: (response) => {
+            alert(response);
+            console.log("Response:", response);
+            this.loadRedFlagsDetails(this.customerId); // Reload addresses after saving
+          },
+          error: (err) => {
+            alert("err : "+err);
+            console.error("Failed to save address:", err);
+          }
+        });
+      }
+    });}
+
+
+addDocumentDetails(){ const dialogRef = this.dialog.open(AdddocumentdetailComponent, {
+      width: '50vw', 
+  maxWidth: 'none',
+      data: { customerId: this.customerId } // 👈 Pass the dynamic customerId here
+    });
+      
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+  
+        // Attach the customerId to the result if not already attached
+        if (!result.customerId) {
+          result.customerId = this.customerId;
+        }
+         alert(result.fullname);
+        // Save the refrence to the server
+        this.dialogservice.saveemploydetails(result).subscribe({
           next: (response) => {
             alert(response);
             console.log("Response:", response);
@@ -243,9 +504,7 @@ customerId:string=this.route.snapshot.paramMap.get('id')!;
           }
         });
       }
-    });
-  }
-  
+    });}
 
 leadid:string="xyz";
 

@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Add Document</h2>
+<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="dialog-content">
+    
+    <div class="form-grid">
+      <!-- Type Dropdown -->
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+         @for (doc of documentTypes; track doc.value) {
+            <mat-option [value]="doc.value">{{ doc.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Enter password" formControlName="password">
+      </mat-form-field>
+
+      <!-- Status Dropdown -->
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="verified">Verified</mat-option>
+          <mat-option value="not_verified">Not Verified</mat-option>
+          <mat-option value="rejected">Rejected</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Drag & Drop Upload -->
+    <div class="upload-box"
+     (drop)="onFileDrop($event)"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     [class.dragover]="isDragOver"
+     (click)="fileInput.click()">
+  
+  <mat-icon class="upload-icon">cloud_upload</mat-icon>
+
+  <p class="upload-text">Click to upload or drag and drop</p>
+  <p class="upload-subtext">PNG, JPG, VIDEO, ZIP or PDF (MAX. 15MB)</p>
+  
+  <input type="file" #fileInput hidden (change)="onFileSelected($event)">
+</div>
+
+    </div>
+
+  </div>
+<br>
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit">Add</button>
+  </div>
+</form>

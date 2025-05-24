@@ -6,8 +6,8 @@
    <mat-form-field appearance="outline">
       <mat-label>Relation</mat-label>
       <mat-select formControlName="relation">
-        @for (relation of relations; track relation.id) {
-          <mat-option [value]="relation.id">{{ relation.relationname }}</mat-option>
+        @for (relation of relations; track relation.relationname) {
+          <mat-option [value]="relation.relationname">{{ relation.relationname }}</mat-option>
         }
       </mat-select>
     </mat-form-field>

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Add Red Flags details</h2>
+<form [formGroup]="redflagsForm" (ngSubmit)="onSubmit()">
+<div mat-dialog-content class="dialog-content">
+   <div class="form-grid">
+    
+   <mat-form-field appearance="outline">
+  <mat-label>Reason</mat-label>
+  <input matInput placeholder="Enter reason" formControlName="reason">
+</mat-form-field>
+
+    
+    <mat-form-field appearance="outline">
+  <mat-label>Risk Level</mat-label>
+  <input matInput placeholder="" formControlName="risk_level">
+</mat-form-field>     
+   </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" type="submit" >Add</button>
+</div>
+</form>

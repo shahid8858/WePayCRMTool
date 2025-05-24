@@ -236,22 +236,20 @@
                               <th mat-header-cell *matHeaderCellDef class="custom-header"> Status </th>
                               <td mat-cell *matCellDef="let element"> {{element.status}} </td>
                             </ng-container>
-                            <!-- Delete Column -->
-                            <ng-container matColumnDef="delete">
+                    
+                            <ng-container matColumnDef="customerId">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> customerId </th>
+                              <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="id">
                               <th mat-header-cell *matHeaderCellDef>Actions</th>
                               <td mat-cell *matCellDef="let element">
-                                <button (click)="deleteAddress()" style="background: none; border: none;">
+                                <button (click)="deleteAddress(element.id)" style="background: none; border: none;">
                                   <span class="material-symbols-outlined">delete</span>
                                 </button>
                               </td>
                             </ng-container>
-                            
-<!--                     
-                            <ng-container matColumnDef="customerId">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header"> customerId </th>
-                              <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
-                            </ng-container> -->
-                    
                             <!-- Header and Row Declarations -->
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row-hover"></tr>
@@ -262,115 +260,12 @@
             </div>
           </mat-expansion-panel>
           <br>
-        <!-- Employment Details -->
+        <!-- Reference Details -->
         <mat-expansion-panel class="custom-rounded-panel">
-            <mat-expansion-panel-header (click)="toggleEmploymentDetails()">
-              <mat-panel-title class="example-card">Employment Details</mat-panel-title>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="example-card">Reference Details</mat-panel-title>
             </mat-expansion-panel-header>
-    
-            <!-- <div class="container">
-
-
-              <div class="edit-btn-container">
-                 <button class="full-color-btn" (click)="addEmploymentDetails()">
-                          Add <mat-icon>add</mat-icon>
-                        </button>
-              </div>
-              <div class="table-container">
-                          <table mat-table [dataSource]="addEmploymentList" class="styled-table">
-                    
-                            <!-- Address Type Column -->
-                            <ng-container matColumnDef="companyname">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Company Name </th>
-                              <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-                            </ng-container>
-                    
-                            <!-- Address Column -->
-                            <ng-container matColumnDef="currentcompanyexp">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Current Company Exp</th>
-                              <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-                            </ng-container>
-                    
-                            <!-- City Column -->
-                            <ng-container matColumnDef="totalExp">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Total Exp.</th>
-                              <td mat-cell *matCellDef="let element"> {{element.city}} </td>
-                            </ng-container>
-                    
-                            <!-- State Column -->
-                            <ng-container matColumnDef="address">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Address</th>
-                              <td mat-cell *matCellDef="let element"> {{element.state}} </td>
-                            </ng-container>
-                    
-                            <!-- Pin Code Column -->
-                            <ng-container matColumnDef="city">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">City</th>
-                              <td mat-cell *matCellDef="let element"> {{element.pincode}} </td>
-                            </ng-container>
-                    
-                            <ng-container matColumnDef="state">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">State</th>
-                              <td mat-cell *matCellDef="let element"> {{element.houseType}} </td>
-                            </ng-container>
-                    
-                            <ng-container matColumnDef="pincode">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Pincode</th>
-                              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="status">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Status</th>
-                              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="verifiedby">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header">Verified By</th>
-                              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                            </ng-container>
-                            <!-- Delete Column -->
-                            <ng-container matColumnDef="delete">
-                              <th mat-header-cell *matHeaderCellDef>Actions</th>
-                              <td mat-cell *matCellDef="let element">
-                                <button (click)="deleteAddress()" style="background: none; border: none;">
-                                  <span class="material-symbols-outlined">delete</span>
-                                </button>
-                              </td>
-                            </ng-container>
-                            
-<!--                     
-                            <ng-container matColumnDef="customerId">
-                              <th mat-header-cell *matHeaderCellDef class="custom-header"> customerId </th>
-                              <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
-                            </ng-container> -->
-                    
-                            <!-- Header and Row Declarations -->
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row-hover"></tr>
-                          </table>
-                        </div>
-              <!-- @if (showaddress) {
-                @if (addressDat) {
-                  <mat-card class="customer-card">
-                    <mat-card-content>
-    
-                      
-    
-                    </mat-card-content>
-                  </mat-card>
-                } @else {
-                  <mat-card class="customer-card">
-                    <mat-card-content>
-                      <p>No Employment added!</p>
-                    </mat-card-content>
-                  </mat-card>
-                }
-              }
-            </div> -->
-         
-
-
- <div class="container">
-             
-               
+              <div class="container">
                   <mat-card class="customer-card">
                     <mat-card-content>
                       <div class="edit-btn-container">
@@ -378,7 +273,6 @@
                           Add <mat-icon>add</mat-icon>
                         </button>
                       </div>
-          
                    <div class="table-container">
                           <table mat-table [dataSource]="refrenceList" class="styled-table">
                     
@@ -420,7 +314,14 @@
                               <th mat-header-cell *matHeaderCellDef class="custom-header"> Pincode </th>
                               <td mat-cell *matCellDef="let refelement"> {{refelement.pincode}} </td>
                             </ng-container>
-                    
+                             <ng-container matColumnDef="id">
+                              <th mat-header-cell *matHeaderCellDef>Actions</th>
+                              <td mat-cell *matCellDef="let refelement">
+                                <button (click)="deleteRefrence(refelement.id)" style="background: none; border: none;">
+                                  <span class="material-symbols-outlined">delete</span>
+                                </button>
+                              </td>
+                            </ng-container>
                             <!-- Header and Row Declarations -->
                             <tr mat-header-row *matHeaderRowDef="refdisplayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: refdisplayedColumns;" class="custom-row-hover"></tr>
@@ -432,6 +333,206 @@
 
 
           </mat-expansion-panel>
+
+
+
+          <br>
+           <!-- Employment Details -->
+        <mat-expansion-panel class="custom-rounded-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="example-card">Employment Details</mat-panel-title>
+            </mat-expansion-panel-header>
+    
+            <div class="container">
+              <div class="edit-btn-container">
+                 <button class="full-color-btn" (click)="addEmploymentDetails()">
+                          Add <mat-icon>add</mat-icon>
+                        </button>
+              </div>
+              <div class="table-container">
+                          <table mat-table [dataSource]="emplomentdetailsList" class="styled-table">
+                    
+                            <!-- Address Type Column -->
+                            <ng-container matColumnDef="companyname">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Company Name </th>
+                              <td mat-cell *matCellDef="let element"> {{element.companyname}} </td>
+                            </ng-container>
+                    
+                            <!-- Address Column -->
+                            <ng-container matColumnDef="currentcompanyexp">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Current Company Exp</th>
+                              <td mat-cell *matCellDef="let element"> {{element.currentcompanyexp}} </td>
+                            </ng-container>
+                    
+                            <!-- City Column -->
+                            <ng-container matColumnDef="totalExp">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Total Exp.</th>
+                              <td mat-cell *matCellDef="let element"> {{element.totalExp}} </td>
+                            </ng-container>
+                    
+                            <!-- State Column -->
+                            <ng-container matColumnDef="address">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Address</th>
+                              <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                            </ng-container>
+                    
+                            <!-- Pin Code Column -->
+                            <ng-container matColumnDef="city">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">City</th>
+                              <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="state">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">State</th>
+                              <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="pincode">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Pincode</th>
+                              <td mat-cell *matCellDef="let element"> {{element.pincode}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Status</th>
+                              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="verifiedby">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Verified By</th>
+                              <td mat-cell *matCellDef="let element"> {{element.verifiedby}} </td>
+                            </ng-container>
+                            <!-- Delete Column -->
+                            <ng-container matColumnDef="id">
+                              <th mat-header-cell *matHeaderCellDef>Actions</th>
+                              <td mat-cell *matCellDef="let element">
+                                <button (click)="deleteemployment(element.id)" style="background: none; border: none;">
+                                  <span class="material-symbols-outlined">delete</span>
+                                </button>
+                              </td>
+                            </ng-container>
+                            
+<!--                     
+                            <ng-container matColumnDef="customerId">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header"> customerId </th>
+                              <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+                            </ng-container> -->
+                    
+                            <!-- Header and Row Declarations -->
+                            <tr mat-header-row *matHeaderRowDef="emplomentdetailsColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: emplomentdetailsColumns;" class="custom-row-hover"></tr>
+                          </table>
+                        </div>
+             
+            </div>
+          </mat-expansion-panel>
+    
+
+<br>
+
+          <!-- Assest Details -->
+            <mat-expansion-panel class="custom-rounded-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="example-card">Assest Details</mat-panel-title>
+            </mat-expansion-panel-header>
+    
+            <div class="container">
+              <div class="edit-btn-container">
+                 <button class="full-color-btn" (click)="addAssestDetails()">
+                          Add <mat-icon>add</mat-icon>
+                        </button>
+              </div>
+              <div class="table-container">
+                          <table mat-table [dataSource]="assestDetailsList" class="styled-table">
+                    
+                            <!-- Address Type Column -->
+                            <ng-container matColumnDef="asset_name">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Assest Name </th>
+                              <td mat-cell *matCellDef="let element"> {{element.asset_name}} </td>
+                            </ng-container>
+                    
+                            <!-- Address Column -->
+                            <ng-container matColumnDef="asset_value">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Assest Value</th>
+                              <td mat-cell *matCellDef="let element"> {{element.asset_value}} </td>
+                            </ng-container>
+                    
+                            <!-- Header and Row Declarations -->
+                            <tr mat-header-row *matHeaderRowDef="assestDetailsColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: assestDetailsColumns;" class="custom-row-hover"></tr>
+                          </table>
+                        </div>
+              <!-- @if (showaddress) {
+                @if (addressDat) {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+    
+                      
+    
+                    </mat-card-content>
+                  </mat-card>
+                } @else {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+                      <p>No Employment added!</p>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              } -->
+            </div>
+          </mat-expansion-panel>
+
+<br>
+        
+        <!-- Red Flags Details -->
+            <mat-expansion-panel class="custom-rounded-panel">
+            <mat-expansion-panel-header (click)="toggleRedFlagsDetails()">
+              <mat-panel-title class="example-card">Red Flags Details</mat-panel-title>
+            </mat-expansion-panel-header>
+    
+            <div class="container">
+              <div class="edit-btn-container">
+                 <button class="full-color-btn" (click)="addRedFlagsDetails()">
+                          Add <mat-icon>add</mat-icon>
+                        </button>
+              </div>
+              <div class="table-container">
+                          <table mat-table [dataSource]="redFlagsDetailsList" class="styled-table">
+                    
+                            <!-- Address Type Column -->
+                            <ng-container matColumnDef="reason">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Reason</th>
+                              <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+                            </ng-container>
+                    
+                            <!-- Address Column -->
+                            <ng-container matColumnDef="risk_level">
+                              <th mat-header-cell *matHeaderCellDef class="custom-header">Risk Level</th>
+                              <td mat-cell *matCellDef="let element"> {{element.risk_level}} </td>
+                            </ng-container>
+                    
+                            <!-- Header and Row Declarations -->
+                            <tr mat-header-row *matHeaderRowDef="redFlagsDetailsColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: redFlagsDetailsColumns;" class="custom-row-hover"></tr>
+                          </table>
+                        </div>
+              <!-- @if (showaddress) {
+                @if (addressDat) {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+    
+                      
+    
+                    </mat-card-content>
+                  </mat-card>
+                } @else {
+                  <mat-card class="customer-card">
+                    <mat-card-content>
+                      <p>No Employment added!</p>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              } -->
+            </div>
+          </mat-expansion-panel>
+
       </mat-accordion>
     </div>
   </div>

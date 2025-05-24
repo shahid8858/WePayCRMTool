@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,44 @@ export class DialogsServiceService {
   }
 
    getAllrefrenceById(userId: string): Observable<any[]> {
-    return this.http.get<any>(`${this.baseUrl}/GetrefrenceById/${userId}`).pipe(map(response=>response.result));
+    return this.http.get<any>(`${this.baseUrl}/GetCustomerRefrenceById/${userId}`).pipe(map(response=>response.result));
+  }
+
+removeContact(id: number): Observable<any> {
+  const params = new HttpParams().set('id', id.toString());
+  return this.http.post<any>(`${this.baseUrl}/RemoveAddress`, {}, { params });
+}
+saveemploydetails(data:any):Observable<any>{
+    return this.http.post("http://localhost:81/api/Leads/AddCustomerEmploymentDetails",data)
+  }
+
+
+removeRefrence(id: number): Observable<any> {
+  const params = new HttpParams().set('id', id.toString());
+  return this.http.post<any>(`${this.baseUrl}/RemoveRefrence`, {}, { params });
+}
+
+  getAllemploymentId(userId: string): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/GetCustomeEmploymentId/${userId}`).pipe(map(response=>response.result));
+  }
+  removeemploymentdetails(id: number): Observable<any> {
+  const params = new HttpParams().set('id', id.toString());
+  return this.http.post<any>(`${this.baseUrl}/RemoveEmpoymentDetails`, {}, { params });
+}
+
+saveassestdetails(data:any):Observable<any>{
+    return this.http.post("http://localhost:81/api/Leads/AddCustomerAssetDetails",data)
+  }
+
+  getAassestdetailsbyId(userId: string): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/GetAssetDetailsByID/${userId}`).pipe(map(response=>response.result));
+  }
+
+  saveredflagdetails(data:any):Observable<any>{
+    return this.http.post("http://localhost:81/api/Leads/AddCustomerRedFlagDetails",data)
+  }
+
+  GetCustomerRedflagDetailsByID(userId: string): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/GetCustomerRedflagDetailsByID/${userId}`).pipe(map(response=>response.result));
   }
 }

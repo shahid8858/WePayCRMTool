@@ -1,0 +1,71 @@
+.dialog-content {
+  padding: 0 1rem;
+
+  .form-grid {
+    padding-top: 5%;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    mat-form-field {
+      flex: 1;
+      min-width: 200px;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.upload-box {
+  border: 2px dashed #ccc;
+  padding: 40px;
+  min-height: 200px;
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+  color: #888;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: border-color 0.2s, background-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon.upload-icon {
+    font-size: 48px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  .upload-text {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .upload-subtext {
+    font-size: 14px;
+    color: #999;
+    margin-top: 4px;
+  }
+}
+
+.upload-box.dragover {
+  border-color: #3f51b5;
+  background-color: #f5f5f5;
+}
+mat-icon.upload-icon {
+  font-size: 48px;
+  color: #888;
+  margin-bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
